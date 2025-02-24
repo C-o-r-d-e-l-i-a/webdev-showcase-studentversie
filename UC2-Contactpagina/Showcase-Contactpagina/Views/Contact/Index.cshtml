@@ -6,32 +6,49 @@
 <div class="page">
     <section class="contact">
 
-        <h1>Contact</h1>
+        <h1>Contactpagina Cordelia Krol</h1>
         <p>@ViewBag.Message</p>
+        <h5>Stuur mij een bericht</h5>
         <form method="post" class="form-contactpagina">
-
+            <!-- velden -->
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="firstname">Voornaam: </label>
-                <input type="text" asp-for="FirstName" name="firstname" id="firstname" required>
+                <label for="firstname">Voornaam: * </label>
+                <input type="text" asp-for="FirstName" name="firstname" id="firstname" placeholder="Voornaam..." required>
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="lastname">Achternaam: </label>
-                <input type="text" asp-for="LastName" name="lastname" id="lastname" required>
+                <label for="lastname">Achternaam: * </label>
+                <input type="text" asp-for="LastName" name="lastname" id="lastname" placeholder="Achternaam..." required>
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="email">E-mailadres: </label>
-                <input type="email" asp-for="Email" name="email" id="email">
+                <label for="email">E-mailadres: *</label>
+                <input type="email" asp-for="Email" name="email" id="email" placeholder="E-mailadres..." required>
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="phone">Telefoonnummer: </label>
-                <input type="tel" asp-for="Phone" name="phone" id="phone">
+                <label for="phone">Telefoonnummer: * </label>
+                <input type="tel" asp-for="Phone" name="phone" id="phone" placeholder="Telefoonnummer..." required>
             </div>
+
+            <div class="form-contactpagina__inputelement fx-col">
+                <label for="subject">Onderwerp: * </label>
+                <input type="text" asp-for="Subject" name="subject" id="subject" placeholder="Onderwerp..." required>
+            </div>
+
+            <div class="form-contactpagina__inputelement fx-col">
+                <label for="message">Bericht: * </label>
+                <input type="text" asp-for="Message" name="message" id="message" placeholder="Bericht..." required>
+            </div>
+
+            <!-- knoppen -->
+            <div class="form-contactpagina__inputelement">
+                <input type="reset" value="Reset">
+            </div>
+
 
             <div class="form-contactpagina__inputelement">
-                <input type="submit" value="Verstuur!">
+                <button type="submit" id="submit-button">Verstuur!</button>
             </div>
 
         </form>
@@ -41,76 +58,102 @@
 
 
 <script>
-//    const inputEmail = document.getElementById('email');
+    //Email
+    const inputEmail = document.getElementById('email');
 
 
-//    const validateEmail = () => { 
-//        if (inputEmail.validity.typeMismatch) {
-//            inputEmail.setCustomValidity("Voer een geldig e-mailadres in!");
-//            inputEmail.reportValidity();
-//        } else if (inputEmail.value.length > 80) {
-//            inputEmail.setCustomValidity("Email moet niet langer dan 80 tekens zijn!");
-//        } else {
-//            inputEmail.setCustomValidity("");
-//        }
-//    }
+    const validateEmail = () => {
+        if (inputEmail.validity.typeMismatch) {
+            inputEmail.setCustomValidity("Voer een geldig e-mailadres in!");
+            inputEmail.reportValidity();
+        } else if (inputEmail.value.length > 80) {
+            inputEmail.setCustomValidity("Email moet niet langer dan 80 tekens zijn!");
+        } else {
+            inputEmail.setCustomValidity("");
+        }
+    }
 
-//    const validateForm = () => {
-//        validateEmail();
-//    }
+    const validateForm = () => {
+        validateEmail();
+    }
 
-//    // Event listener voor email
-//    // Aanbevolen events voor formulieren: https://github.com/Windesheim-HBO-ICT/client_studenten/blob/main/lessen/week-2/les-1/form-constraint-validation-api/studentversie/events-voor-invoer-validatie.md
-//    inputEmail.addEventListener("blur", validateEmail);
-//    inputEmail.addEventListener("input", validateEmail);
+    // Event listener voor email
+    // Aanbevolen events voor formulieren: https://github.com/Windesheim-HBO-ICT/client_studenten/blob/main/lessen/week-2/les-1/form-constraint-validation-api/studentversie/events-voor-invoer-validatie.md
+    inputEmail.addEventListener("blur", validateEmail);
+    inputEmail.addEventListener("input", validateEmail);
 
-//    // Selecteer het formelement
-//    const form = document.querySelector('.form-contactpagina');
 
-//    // Event listener voor formulierinzending
-//    form.addEventListener('submit', function (event) {
-//        event.preventDefault(); // Voorkom standaard formulierinzending
+    //Telefoonnummer
+    const inputPhone = document.getElementById('phone');
 
-//       // Valideer alle velden voor de zekerheid
-//        validateForm();
+    const validatePhone = () => {
+        const phoneValue = inputPhone.value.trim();
 
-//        // Verkrijg CSRF-token van het formulier
-//        const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+        if (!phoneValue.startsWith("06")) {
+            inputPhone.setCustomValidity("Telefoonnummer moet beginnen met 06!");
+        } else if (isNaN(phoneValue)) {
+            inputPhone.setCustomValidity("Telefoonnummer mag alleen cijfers bevatten!");
+        } else if (phoneValue.length !== 10) {
+            inputPhone.setCustomValidity("Telefoonnummer moet exact 10 cijfers bevatten!");
 
-//        // Serialiseer formuliergegevens
-//        const formData = new URLSearchParams();
+        } else {
+            inputPhone.setCustomValidity("");
+        }
 
-//        formData.append('email', form.email.value);
-        
-//        formData.append('__RequestVerificationToken', csrfToken); // Voeg CSRF-token toe
+        inputPhone.reportValidity();
+    };
+    // Event listener voor telefoonnummer
+    inputPhone.addEventListener("blur", validatePhone);
+    inputPhone.addEventListener("input", validatePhone);
 
-//        // Voer een POST-verzoek uit
-//        fetch('/contact', {
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'application/x-www-form-urlencoded' // Stel de inhoudstype in
-//            },
-//            body: formData // Stuur de geserialiseerde formuliergegevens als de body
-//        })
-//            .then(response => {
-//                if (!response.ok) {
-//                    throw new Error('Netwerkrespons was niet ok');
-//                }
-//                return response.text();
-//            })
-//            .then(data => {
-//                // Verwerk succesvolle formulierinzending
-//                console.log('Formulier succesvol ingediend:', data);
-//                // Optioneel: je kunt hier een redirect uitvoeren of een succesbericht tonen
-//            })
-//            .catch(error => {
-//                console.error('Er was een probleem met de formulierinzending:', error);
 
-//                alert(error.message)
+    // Selecteer het formelement
+    const form = document.querySelector('.form-contactpagina');
 
-//                // Verwerk fouten hier
-//            });
-//    });
+    // Event listener voor formulierinzending
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); Voorkom standaard formulierinzending
+
+        // Valideer alle velden voor de zekerheid
+        validateForm();
+
+        // Verkrijg CSRF-token van het formulier
+        const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+        // Serialiseer formuliergegevens
+        const formData = new URLSearchParams();
+
+        formData.append('email', form.email.value);
+
+        formData.append('__RequestVerificationToken', csrfToken); // Voeg CSRF-token toe
+
+        // Voer een POST-verzoek uit
+        fetch('/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded' // Stel de inhoudstype in
+            },
+            body: formData // Stuur de geserialiseerde formuliergegevens als de body
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Netwerkrespons was niet ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Verwerk succesvolle formulierinzending
+                console.log('Formulier succesvol ingediend:', data);
+                // Optioneel: je kunt hier een redirect uitvoeren of een succesbericht tonen
+            })
+            .catch(error => {
+                console.error('Er was een probleem met de formulierinzending:', error);
+
+                alert(error.message)
+
+                // Verwerk fouten hier
+            });
+    });
 
 
 

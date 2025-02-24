@@ -1,1 +1,3 @@
-﻿console.log('hallo')
+﻿console.log('hallo');
+
+var a;

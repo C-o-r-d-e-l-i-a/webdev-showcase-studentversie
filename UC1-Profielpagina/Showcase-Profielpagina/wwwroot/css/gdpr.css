@@ -15,7 +15,9 @@
     right: 0;
     padding: 10px;
     margin: 5px;
-    border: 2px solid gray;
+    border: 5px solid #2A2A2A;
+    background-color: #333333;
+    color: white;
     border-radius: 15px 15px 15px 15px;
 }
 
@@ -32,14 +34,14 @@
 }
 
 .gdpr-consent__button--accept {
-    background-color: #d5f5d5;
+    background-color: #b3f0ff;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid gray;
 }
 
 .gdpr-consent__button--accept:hover {
-    background-color: #c5e3c5;
+    background-color: #00f0ff;
 }
 
 .gdpr-consent__button--reject {

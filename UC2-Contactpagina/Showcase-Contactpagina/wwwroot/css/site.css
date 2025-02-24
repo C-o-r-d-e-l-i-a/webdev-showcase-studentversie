@@ -23,5 +23,10 @@
     flex-direction: column;
 }
 
+body {
+    margin-bottom: 60px;
+    background-color: #B0B0B0;
+}
+
 @media only screen and (min-width: 800px) {
 }

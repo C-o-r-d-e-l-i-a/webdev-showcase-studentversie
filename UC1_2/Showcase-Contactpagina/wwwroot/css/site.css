@@ -1,0 +1,61 @@
+/*mobile version*/
+
+.page {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial;
+}
+
+.contact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-contactpagina__inputelement {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0px 15px 0px
+}
+
+.fx-col {
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 800px) {
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #808080;
+}
+
+/*nav {
+    position: relative;
+    background-color: #00F0FF;
+}*/
+
+::selection {
+    color: #FFFFFF;
+    background: #FF6AC1;
+}

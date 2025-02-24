@@ -18,5 +18,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #B0B0B0;
+}
+
+
+::selection {
+    color: #FFFFFF;
+    background: #FF6AC1;
 }
